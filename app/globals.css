@@ -1,0 +1,271 @@
+:root {
+  --bg: #f3efe3;
+  --panel: rgba(255, 252, 244, 0.88);
+  --panel-strong: #fffdf7;
+  --ink: #18231a;
+  --muted: #526156;
+  --border: rgba(44, 66, 49, 0.12);
+  --accent: #1f6feb;
+  --accent-soft: rgba(31, 111, 235, 0.1);
+  --warn: #f97316;
+  --good: #15803d;
+  --shadow: 0 20px 60px rgba(24, 35, 26, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.15), transparent 26%),
+    radial-gradient(circle at top right, rgba(31, 111, 235, 0.16), transparent 24%),
+    linear-gradient(180deg, #f9f4e8 0%, var(--bg) 50%, #ebe7db 100%);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+code {
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(24, 35, 26, 0.06);
+  font-size: 0.9rem;
+}
+
+.page-shell {
+  width: min(1180px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.hero h1,
+.panel h3,
+.hero-card h2,
+.stat-card h3 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 4vw, 4.6rem);
+  line-height: 0.92;
+  margin: 0.4rem 0 1rem;
+  max-width: 10ch;
+}
+
+.hero-copy {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.eyebrow,
+.card-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.hero-card,
+.panel,
+.stat-card,
+.status-panel {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  padding: 1.4rem;
+  border-radius: 1.6rem;
+  align-self: end;
+}
+
+.hero-card h2 {
+  margin: 0.45rem 0 0.75rem;
+  font-size: 2rem;
+}
+
+.hero-footnote,
+.muted,
+.updated-at,
+.stat-card p,
+.methodology-panel li {
+  color: var(--muted);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.4rem 0;
+}
+
+.range-picker {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.82);
+  border: 1px solid var(--border);
+}
+
+.range-picker button {
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.range-picker button:hover,
+.range-picker button.active {
+  background: var(--ink);
+  color: #fffdf7;
+  transform: translateY(-1px);
+}
+
+.stats-grid,
+.insight-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.insight-grid {
+  grid-template-columns: 1.05fr 0.95fr;
+  margin: 1rem 0;
+}
+
+.stat-card,
+.panel,
+.status-panel {
+  border-radius: 1.4rem;
+  padding: 1.25rem;
+}
+
+.stat-card h3 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.panel h3 {
+  margin: 0.35rem 0 0.85rem;
+  font-size: 1.55rem;
+}
+
+.methodology-panel ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sources-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.sources-block a {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
+
+.chart-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.chart-panel {
+  overflow: hidden;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.chart-wrap {
+  margin-top: 0.8rem;
+  height: 360px;
+}
+
+.status-panel {
+  margin: 1rem 0;
+}
+
+.status-panel.error {
+  color: #b91c1c;
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .stats-grid,
+  .insight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100vw - 1rem, 100%);
+    padding-top: 1rem;
+  }
+
+  .hero-card,
+  .panel,
+  .stat-card,
+  .status-panel {
+    border-radius: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+}
