@@ -224,7 +224,7 @@ export function Dashboard() {
               <h3>Data pipeline</h3>
               <ul>
                 <li>MSTR daily closes from Yahoo Finance chart data.</li>
-                <li>BTC daily closes from CoinGecko market chart data.</li>
+                <li>BTC daily closes from Yahoo Finance BTC-USD chart data.</li>
                 <li>BTC holdings timeline from public Strategy treasury announcements.</li>
                 <li>Basic shares outstanding approximated as constant for a transparent classroom model.</li>
               </ul>

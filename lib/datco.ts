@@ -75,12 +75,8 @@ type YahooChartResponse = {
   };
 };
 
-type CoinGeckoMarketChart = {
-  prices?: [number, number][];
-};
-
-export async function fetchMstrHistory(range: string) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/MSTR?range=${range}&interval=1d&includePrePost=false&events=div%2Csplits`;
+async function fetchYahooHistory(symbol: string, range: string) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=${range}&interval=1d&includePrePost=false&events=div%2Csplits`;
   const response = await fetch(url, {
     headers: {
       "User-Agent": "Mozilla/5.0",
@@ -89,7 +85,7 @@ export async function fetchMstrHistory(range: string) {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch MSTR history: ${response.status}`);
+    throw new Error(`Failed to fetch ${symbol} history: ${response.status}`);
   }
 
   const payload = (await response.json()) as YahooChartResponse;
@@ -105,26 +101,16 @@ export async function fetchMstrHistory(range: string) {
     .filter((point): point is { date: string; close: number } => typeof point.close === "number");
 }
 
-export async function fetchBitcoinHistory(days: string) {
-  const url =
-    `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}&interval=daily`;
-  const response = await fetch(url, {
-    headers: {
-      accept: "application/json",
-    },
-    next: { revalidate: 60 * 60 },
-  });
+export async function fetchMstrHistory(range: string) {
+  return fetchYahooHistory("MSTR", range);
+}
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch BTC history: ${response.status}`);
-  }
+export async function fetchBitcoinHistory(range: string) {
+  const btcHistory = await fetchYahooHistory("BTC-USD", range);
 
-  const payload = (await response.json()) as CoinGeckoMarketChart;
-  const prices = payload.prices ?? [];
-
-  return prices.map(([timestamp, price]) => ({
-    date: normalizeDate(timestamp),
-    btcPrice: price,
+  return btcHistory.map((point) => ({
+    date: point.date,
+    btcPrice: point.close,
   }));
 }
 
@@ -226,19 +212,6 @@ export function formatUsd(value: number) {
     currency: "USD",
     maximumFractionDigits: 2,
   }).format(value);
-}
-
-export function getDaysFromRange(range: string) {
-  switch (range) {
-    case "6mo":
-      return "180";
-    case "1y":
-      return "365";
-    case "2y":
-      return "730";
-    default:
-      return "365";
-  }
 }
 
 export function shiftDate(date: Date, days: number) {

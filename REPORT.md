@@ -34,7 +34,7 @@ In short, this indicator reflects how the stock market prices a BTC treasury com
 I used multiple public data sources:
 
 - `Yahoo Finance` for daily MSTR stock prices
-- `CoinGecko` for daily BTC/USD prices
+- `Yahoo Finance BTC-USD chart data` for daily BTC/USD prices
 - `Strategy public treasury announcements` for BTC holdings updates
 
 The website aggregates these sources on the server side and computes:

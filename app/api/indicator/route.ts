@@ -3,7 +3,6 @@ import {
   buildIndicatorSeries,
   fetchBitcoinHistory,
   fetchMstrHistory,
-  getDaysFromRange,
   summarizeSeries,
 } from "@/lib/datco";
 
@@ -14,7 +13,7 @@ export async function GET(request: NextRequest) {
   try {
     const [mstrHistory, btcHistory] = await Promise.all([
       fetchMstrHistory(supportedRange),
-      fetchBitcoinHistory(getDaysFromRange(supportedRange)),
+      fetchBitcoinHistory(supportedRange),
     ]);
 
     const series = buildIndicatorSeries(mstrHistory, btcHistory);
@@ -31,8 +30,8 @@ export async function GET(request: NextRequest) {
           url: "https://query1.finance.yahoo.com/v8/finance/chart/MSTR",
         },
         {
-          label: "CoinGecko Bitcoin market chart",
-          url: "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart",
+          label: "Yahoo Finance BTC-USD chart",
+          url: "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD",
         },
         {
           label: "Strategy treasury press releases",

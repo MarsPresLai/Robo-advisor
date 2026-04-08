@@ -21,7 +21,7 @@ This dashboard visualizes both:
 ## Data Sources
 
 - `MSTR` daily close: Yahoo Finance chart endpoint
-- `BTC/USD` daily close: CoinGecko market chart endpoint
+- `BTC/USD` daily close: Yahoo Finance BTC-USD chart endpoint
 - `BTC holdings history`: public Strategy treasury announcements encoded as dated events in `lib/datco.ts`
 
 ## Local Development
